@@ -44,3 +44,44 @@ CNO_COMMENTS = {
     ),
     "codigo_de_localizacao": "Código da localização",
 }
+
+CNO_AREA_COMMENTS = {
+    "cno": "Número do CNO",
+    "categoria": (
+        "Categoria da área: "
+        "0-Obra Nova; "
+        "1-Acréscimo; "
+        "2-Reforma; "
+        "3-Demolição; "
+        "4-Existente"
+    ),
+    "destinacao": (
+        "Destinação da área: "
+        "0-Residencial unifamiliar; "
+        "1-Residencial multifamiliar; "
+        "2-Comercial salas e lojas; "
+        "3-Edifício de Garagens; "
+        "4-Galpão industrial; "
+        "5-Casa popular; "
+        "6-Conjunto habitacional popular"
+    ),
+    "tipo_de_obra": (
+        "Tipo de obra: "
+        "0-Alvenaria; "
+        "1-Madeira; "
+        "2-Mista"
+    ),
+    "tipo_de_area": (
+        "Tipo de área: "
+        "P-Principal; "
+        "C-Complementar"
+    ),
+    "tipo_de_area_complementar": (
+        "Tipo de área complementar: "
+        "0-Quadra Esportiva e Poliesportiva; "
+        "1-Estacionamento Térreo; "
+        "2-Piscina; "
+        "3-Área Complementar do Posto de Gasolina"
+    ),
+    "metragem": "Metragem da área",
+}
