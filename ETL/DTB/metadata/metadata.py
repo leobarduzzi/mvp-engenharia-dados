@@ -6,7 +6,7 @@
 # UF | Nome_UF | Região Geográfica Intermediária | Nome Região Geográfica Intermediária | Região Geográfica Imediata | Nome Região Geográfica Imediata | Município | Código Município Completo | Nome_Município
 
 DTB_COMMENTS = {
-    "uf": "Sigla da Unidade da Federação (2 letras). Domínio: AC, AL, AP, AM, BA, CE, DF, ES, GO, MA, MT, MS, MG, PA, PB, PR, PE, PI, RJ, RN, RS, RO, RR, SC, SP, SE, TO",
+    "uf": "Código da Unidade da Federação com 2 dígitos (11 a 53). Header original: UF — contém CÓDIGO, não sigla",
     "nome_uf": "Nome da Unidade da Federação. Ex.: São Paulo, Bahia",
     "regiao_geografica_intermediaria": "Código da Região Geográfica Intermediária (4 dígitos: 2 UF + 2 seq). Ex.: 3101. Header original: Região Geográfica Intermediária",
     "nome_regiao_geografica_intermediaria": "Nome da Região Geográfica Intermediária. Header original: Nome Região Geográfica Intermediária",
@@ -19,13 +19,9 @@ DTB_COMMENTS = {
 
 SILVER_MUNICIPIOS_COMMENTS = {
     "codigo_municipio": "Código Município IBGE 7 dígitos (string, preserva zero à esquerda, DV). PK. Derivado de codigo_municipio_completo. ^[0-9]{7}$",
-    "codigo_uf": "Código UF 2 dígitos derivado dos 2 primeiros dígitos do codigo_municipio. Domínio: 11-53",
-    "sigla_uf": "Sigla UF (2 letras maiúsculas) padronizada de uf. Domínio: 27 valores",
+    "codigo_uf": "Código UF 2 dígitos (de UF ou dos 2 primeiros dígitos do codigo_municipio). Domínio: 11-53",
+    "sigla_uf": "Sigla UF (2 letras maiúsculas) derivada do código UF via mapa IBGE. Domínio: AC..TO (27 valores)",
     "nome_uf": "Nome UF padronizado (Title Case, trim)",
-    "codigo_regiao_geografica_intermediaria": "Código Região Intermediária (4 dígitos string)",
-    "nome_regiao_geografica_intermediaria": "Nome Região Intermediária (Title Case)",
-    "codigo_regiao_geografica_imediata": "Código Região Imediata (6 dígitos string)",
-    "nome_regiao_geografica_imediata": "Nome Região Imediata (Title Case)",
     "nome_municipio": "Nome Município (Title Case, trim, sem espaços duplos)",
 }
 
@@ -36,8 +32,4 @@ DIM_MUNICIPIO_COMMENTS = {
     "codigo_uf": "Código UF 2 dígitos (FK lógica)",
     "sigla_uf": "Sigla UF (2 letras)",
     "nome_uf": "Nome UF",
-    "codigo_regiao_geografica_intermediaria": "Código Região Intermediária (4 dígitos)",
-    "nome_regiao_geografica_intermediaria": "Nome Região Intermediária",
-    "codigo_regiao_geografica_imediata": "Código Região Imediata (6 dígitos)",
-    "nome_regiao_geografica_imediata": "Nome Região Imediata",
 }
