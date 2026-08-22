@@ -216,3 +216,12 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+# --- MVP: docs de agentes (uso local, não subir p/ GitHub) ---
+/.agents/
+AGENTS.md
+CLAUDE.md
+.devdocs/
+.opencode/*.md
+!.opencode/opencode.json
+!.opencode/opencode.jsonc

@@ -2,6 +2,7 @@ import re
 import unicodedata
 
 from pyspark.sql import DataFrame
+from pyspark.sql import SparkSession
 
 
 def read_csv(
@@ -70,6 +71,29 @@ def normalizar_colunas(df: DataFrame) -> DataFrame:
         )
 
     return df.toDF(*nomes)
+
+def read_ods(
+    spark: SparkSession,
+    file_path: str,
+    sheet_name: int | str = 0,
+    header: int = 0,
+) -> DataFrame:
+    """
+    Lê arquivo .ods (OpenDocument Spreadsheet) via pandas + odf e converte para Spark.
+
+    Requer no cluster: %pip install odfpy openpyxl pandas
+    - Usado para DTB IBGE que vem em .ods/.xls (RELATORIO_DTB_BRASIL_*_MUNICIPIOS).
+    - Mantém padrão reutilizável em src/data_pipeline (regra do projeto).
+    """
+    import pandas as pd
+
+    pdf = pd.read_excel(file_path, sheet_name=sheet_name, header=header, engine="odf")
+    # limpa colunas vazias tipo "Unnamed: 0"
+    pdf = pdf.loc[:, ~pdf.columns.astype(str).str.contains(r"^Unnamed")]
+    # remove linhas totalmente vazias
+    pdf = pdf.dropna(how="all")
+    return spark.createDataFrame(pdf)
+
 
 def add_column_comments(spark, table_name: str, comments: dict[str, str]) -> None:
     for column_name, comment in comments.items():
