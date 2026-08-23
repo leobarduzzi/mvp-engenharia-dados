@@ -22,6 +22,10 @@ SILVER_MUNICIPIOS_COMMENTS = {
     "codigo_uf": "Código UF 2 dígitos (de UF ou dos 2 primeiros dígitos do codigo_municipio). Domínio: 11-53",
     "sigla_uf": "Sigla UF (2 letras maiúsculas) derivada do código UF via mapa IBGE. Domínio: AC..TO (27 valores)",
     "nome_uf": "Nome UF padronizado (Title Case, trim)",
+    "codigo_regiao_geografica_intermediaria": "Código Região Intermediária (4 dígitos string, derivado de regiao_geografica_intermediaria). Ex.: 3101",
+    "nome_regiao_geografica_intermediaria": "Nome Região Intermediária (Title Case)",
+    "codigo_regiao_geografica_imediata": "Código Região Imediata (6 dígitos string, derivado de regiao_geografica_imediata). Ex.: 310001",
+    "nome_regiao_geografica_imediata": "Nome Região Imediata (Title Case)",
     "nome_municipio": "Nome Município (Title Case, trim, sem espaços duplos)",
 }
 
@@ -32,4 +36,8 @@ DIM_MUNICIPIO_COMMENTS = {
     "codigo_uf": "Código UF 2 dígitos (FK lógica)",
     "sigla_uf": "Sigla UF (2 letras)",
     "nome_uf": "Nome UF",
+    "codigo_regiao_geografica_intermediaria": "Código Região Intermediária (4 dígitos)",
+    "nome_regiao_geografica_intermediaria": "Nome Região Intermediária",
+    "codigo_regiao_geografica_imediata": "Código Região Imediata (6 dígitos)",
+    "nome_regiao_geografica_imediata": "Nome Região Imediata",
 }
