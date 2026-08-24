@@ -2,6 +2,10 @@ import re
 import unicodedata
 
 from pyspark.sql import DataFrame
+from pyspark.sql import SparkSession
+from pyspark.sql.types import StringType
+from pyspark.sql.types import StructField
+from pyspark.sql.types import StructType
 
 
 def read_csv(
@@ -70,6 +74,65 @@ def normalizar_colunas(df: DataFrame) -> DataFrame:
         )
 
     return df.toDF(*nomes)
+
+def read_ods(
+    spark: SparkSession,
+    file_path: str,
+    sheet_name: int | str = 0,
+    header: int = 0,
+) -> DataFrame:
+    """
+    Lê um arquivo .ods (OpenDocument Spreadsheet) e retorna um Spark DataFrame
+    com todas as colunas como string limpa.
+
+    Requer o pacote `odfpy` instalado no cluster (%pip install odfpy).
+
+    Parâmetros:
+        spark: sessão Spark (injetada).
+        file_path: caminho do arquivo (ex.: /Volumes/workspace/raw/IBGE/arquivo.ods).
+        sheet_name: índice (0-based) ou nome da aba a ser lida.
+        header: índice 0-based da linha de cabeçalho.
+            Ex.: cabeçalho na linha 7 do relatório -> header=6.
+
+    Comportamento:
+        - Remove colunas/linhas totalmente vazias (comuns em relatórios com margens).
+        - Converte cada célula para texto sem artefatos numéricos:
+          códigos IBGE lidos como número viram string inteira (1100015.0 -> "1100015"),
+          preservando códigos que perderiam zero à esquerda ou ganhariam ".0".
+        - Células vazias/NaN viram null.
+    """
+    import math
+
+    import pandas as pd
+
+    pdf = pd.read_excel(
+        file_path,
+        sheet_name=sheet_name,
+        header=header,
+        engine="odf",
+    )
+
+    pdf = pdf.loc[:, ~pdf.columns.astype(str).str.startswith("Unnamed")]
+    pdf = pdf.dropna(how="all")
+
+    def celula_para_texto(valor):
+        if valor is None:
+            return None
+        if isinstance(valor, float) and math.isnan(valor):
+            return None
+        if isinstance(valor, float) and valor.is_integer():
+            return str(int(valor))
+        texto = str(valor).strip()
+        return texto if texto else None
+
+    pdf = pdf.apply(lambda coluna: coluna.map(celula_para_texto))
+
+    schema = StructType(
+        [StructField(coluna, StringType(), True) for coluna in pdf.columns]
+    )
+
+    return spark.createDataFrame(pdf, schema)
+
 
 def add_column_comments(spark, table_name: str, comments: dict[str, str]) -> None:
     for column_name, comment in comments.items():

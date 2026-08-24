@@ -3,5 +3,6 @@ from .data_utils import (
     normalizar_texto,
     normalizar_colunas,
     read_csv,
+    read_ods,
     save_table,
 )
