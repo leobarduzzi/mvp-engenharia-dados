@@ -3,8 +3,11 @@
 # Fonte: https://www.ibge.gov.br/geociencias/organizacao-do-territorio/estrutura-territorial/23701-divisao-territorial-brasileira.html
 # Arquivo origem: /Volumes/workspace/raw/IBGE/RELATORIO_DTB_BRASIL_2025_MUNICIPIOS.ods
 #   (extraído de DTB_2025.zip - geoftp.ibge.gov.br/organizacao_do_territorio/divisao_territorial/2025/)
+# Enriquecimento: código TOM derivado via biblioteca cidade-ibge-tom (MIT) ->
+#   base estática da lista oficial de municípios do SIAFI
+#   https://www.tesourotransparente.gov.br/ckan/dataset/lista-de-municipios-do-siafi
 # Linhagem: download IBGE -> ODS no Volume (cabeçalho na linha 7) ->
-#            bronze.dtb -> silver.municipios -> gold.dim_municipio
+#            bronze.dtb -> silver.municipios (+ enriquecimento TOM) -> gold.dim_municipio
 #
 # As chaves dos dicionários são os nomes de colunas após `normalizar_colunas`.
 
@@ -69,7 +72,15 @@ SILVER_MUNICIPIOS_COMMENTS = {
         "Nome da Região Geográfica Imediata (trim). Derivado de bronze.dtb.nome_regiao_geografica_imediata."
     ),
     "nome_municipio": (
-        "Nome oficial do município (trim, espaços colapsados). Derivado de bronze.dtb.nome_municipio."
+        "Nome oficial do município (trim; casing original do IBGE é mantido). "
+        "Derivado de bronze.dtb.nome_municipio."
+    ),
+    "codigo_tom": (
+        "Código TOM do município (4 dígitos, padrão SIAFI/Tesouro Nacional, string). "
+        "Enriquecimento via biblioteca cidade-ibge-tom (MIT) a partir de codigo_municipio (IBGE); "
+        "base: lista oficial de municípios do SIAFI — Tesouro Transparente. "
+        "Pode ser nulo para códigos ausentes na base estática da biblioteca. "
+        "Domínio: '0101' a '9701' (ex.: São Paulo = '7107')."
     ),
 }
 
@@ -79,6 +90,11 @@ DIM_MUNICIPIO_COMMENTS = {
     ),
     "codigo_municipio": (
         "Natural Key: código IBGE do município com DV (7 dígitos, string). Vem de silver.municipios.codigo_municipio."
+    ),
+    "codigo_tom": (
+        "Código TOM do município (4 dígitos, string). Vem de silver.municipios.codigo_tom "
+        "(enriquecimento via biblioteca cidade-ibge-tom — lista SIAFI/Tesouro). "
+        "Permite joins diretos com bases da RFB que usam código TOM (ex.: CNO/CNPJ)."
     ),
     "nome_municipio": "Nome oficial do município. Vem de silver.municipios.nome_municipio.",
     "codigo_uf": "Código IBGE da UF (2 dígitos). FK lógica para eventual dim_uf. Vem de silver.municipios.codigo_uf.",
