@@ -1,7 +1,9 @@
 from .data_utils import (
     add_column_comments,
+    mapear_valores,
     normalizar_texto,
     normalizar_colunas,
+    nulo_se_vazio,
     para_data_segura,
     para_double_seguro,
     read_csv,

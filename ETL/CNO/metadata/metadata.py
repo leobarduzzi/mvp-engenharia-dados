@@ -171,31 +171,32 @@ SILVER_CNO_COMMENTS = {
 SILVER_CNO_AREAS_COMMENTS = {
     "cno": "Número do CNO (inscrição da obra). FK para silver.cno.",
     "categoria": (
-        "Categoria da área (código): 0-Obra Nova; 1-Acréscimo; 2-Reforma; "
-        "3-Demolição; 4-Existente. Fora do domínio é descartado."
+        "Categoria da área em TEXTO, conforme arquivo origem (o CSV traz a descrição, não o código). "
+        "Domínio: 'Obra Nova'; 'Acréscimo'; 'Reforma'; 'Demolição'; 'Existente'. Fora do domínio é descartado."
     ),
     "destinacao": (
-        "Destinação da área (código): 0-Residencial unifamiliar; "
-        "1-Residencial multifamiliar; 2-Comercial salas e lojas; "
-        "3-Edifício de Garagens; 4-Galpão industrial; 5-Casa popular; "
-        "6-Conjunto habitacional popular. Fora do domínio é descartado."
+        "Destinação da área em TEXTO, conforme arquivo origem. "
+        "Domínio: 'Residencial unifamiliar'; 'Residencial multifamiliar'; "
+        "'Comercial salas e lojas'; 'Edifício de Garagens'; 'Galpão industrial'; "
+        "'Casa popular'; 'Conjunto habitacional popular'. Fora do domínio é descartado."
     ),
     "tipo_de_obra": (
-        "Tipo de obra (código): 0-Alvenaria; 1-Madeira; 2-Mista. "
-        "Fora do domínio é descartado."
+        "Tipo de obra em TEXTO, conforme arquivo origem. "
+        "Domínio: 'Alvenaria'; 'Madeira'; 'Mista'. Fora do domínio é descartado."
     ),
     "tipo_de_area": (
-        "Tipo de área (código): P-Principal; C-Complementar. "
-        "Fora do domínio é descartado."
+        "Tipo de área em TEXTO, conforme arquivo origem. "
+        "Domínio: 'Principal'; 'Complementar'. Fora do domínio é descartado."
     ),
     "tipo_de_area_complementar": (
-        "Tipo de área complementar (código): 0-Quadra Esportiva e Poliesportiva; "
-        "1-Estacionamento Térreo; 2-Piscina; 3-Área Complementar do Posto de Gasolina. "
-        "Pode ser nulo quando tipo_de_area = P (não aplicável); valor presente fora do domínio é descartado."
+        "Tipo de área complementar em TEXTO, conforme arquivo origem. "
+        "Domínio: 'Quadra Esportiva e Poliesportiva'; 'Estacionamento Térreo'; 'Piscina'; "
+        "'Área Complementar do Posto de Gasolina'. O literal 'null' do CSV é normalizado para null; "
+        "pode ser nulo quando tipo_de_area = Principal (não aplicável); valor presente fora do domínio é descartado."
     ),
     "metragem": (
         "Metragem da área (double, >= 0). Derivado de bronze.cno_areas.metragem "
-        "com cast numérico; nulos/negativos descartados."
+        "com conversão tolerante; nulos/negativos descartados."
     ),
 }
 
@@ -217,25 +218,30 @@ DIM_SITUACAO_COMMENTS = {
 
 DIM_AREA_COMMENTS = {
     "sk_area": (
-        "Surrogate Key da dimensão (int sequencial, ordenada pelos códigos). PK. "
+        "Surrogate Key da dimensão (int sequencial, ordenada pelos atributos). PK. "
         "Grão: 1 linha por combinação categoria x destinação x tipo de obra x tipo de área x tipo complementar."
     ),
     "categoria": (
-        "Categoria da área (código): 0-Obra Nova; 1-Acréscimo; 2-Reforma; 3-Demolição; 4-Existente. Vem de silver.cno_areas."
+        "Descrição textual oficial da categoria: 'Obra Nova'; 'Acréscimo'; 'Reforma'; "
+        "'Demolição'; 'Existente'. Vem de silver.cno_areas (o arquivo origem traz texto)."
     ),
-    "categoria_descricao": "Descrição da categoria decodificada via domínio oficial RFB.",
+    "categoria_codigo": "Código RFB da categoria derivado do texto via domínio oficial: 0-Obra Nova; 1-Acréscimo; 2-Reforma; 3-Demolição; 4-Existente.",
     "destinacao": (
-        "Destinação da área (código 0 a 6, residencial/comercial/industrial/popular). Vem de silver.cno_areas."
+        "Descrição textual oficial da destinação: 'Residencial unifamiliar'; 'Residencial multifamiliar'; "
+        "'Comercial salas e lojas'; 'Edifício de Garagens'; 'Galpão industrial'; 'Casa popular'; "
+        "'Conjunto habitacional popular'. Vem de silver.cno_areas."
     ),
-    "destinacao_descricao": "Descrição da destinação decodificada via domínio oficial RFB.",
-    "tipo_de_obra": "Tipo de obra (código): 0-Alvenaria; 1-Madeira; 2-Mista. Vem de silver.cno_areas.",
-    "tipo_de_obra_descricao": "Descrição do tipo de obra decodificada via domínio oficial RFB.",
-    "tipo_de_area": "Tipo de área (código): P-Principal; C-Complementar. Vem de silver.cno_areas.",
-    "tipo_de_area_descricao": "Descrição do tipo de área decodificada via domínio oficial RFB.",
+    "destinacao_codigo": "Código RFB da destinação derivado do texto via domínio oficial (0 a 6).",
+    "tipo_de_obra": "Descrição textual oficial do tipo de obra: 'Alvenaria'; 'Madeira'; 'Mista'. Vem de silver.cno_areas.",
+    "tipo_de_obra_codigo": "Código RFB do tipo de obra derivado do texto via domínio oficial: 0-Alvenaria; 1-Madeira; 2-Mista.",
+    "tipo_de_area": "Descrição textual oficial do tipo de área: 'Principal' ou 'Complementar'. Vem de silver.cno_areas.",
+    "tipo_de_area_codigo": "Código RFB do tipo de área derivado do texto via domínio oficial: P-Principal; C-Complementar.",
     "tipo_de_area_complementar": (
-        "Tipo de área complementar (código 0 a 3); nulo quando não aplicável (tipo_de_area = P)."
+        "Descrição textual oficial do tipo complementar ('Quadra Esportiva e Poliesportiva'; "
+        "'Estacionamento Térreo'; 'Piscina'; 'Área Complementar do Posto de Gasolina'); "
+        "nulo quando não aplicável (tipo_de_area = Principal)."
     ),
-    "tipo_de_area_complementar_descricao": "Descrição do tipo de área complementar; nulo quando não aplicável.",
+    "tipo_de_area_complementar_codigo": "Código RFB do tipo complementar derivado do texto via domínio oficial (0 a 3); nulo quando não aplicável.",
 }
 
 FATO_OBRAS_COMMENTS = {

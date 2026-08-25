@@ -16,6 +16,34 @@ PADRAO_DATA = {
 }
 
 
+def nulo_se_vazio(coluna: Column) -> Column:
+    """
+    Trim e normalização de representações textuais de vazio: '', 'null'
+    (qualquer caixa) viram null de verdade — comum em arquivos gov.br.
+    """
+    texto = F.trim(coluna.cast("string"))
+
+    return F.when(
+        texto.isNull() | (texto == "") | (F.upper(texto) == "NULL"),
+        None,
+    ).otherwise(texto)
+
+
+def mapear_valores(coluna, mapa: dict[str, str]) -> Column:
+    """
+    Substitui valores da coluna conforme dicionário {de: para} (when encadeado);
+    sem correspondência resulta em null. Aceita nome da coluna (str) ou Column.
+    """
+    alvo = F.col(coluna) if isinstance(coluna, str) else coluna
+
+    expr = None
+    for de, para in mapa.items():
+        cond = alvo.eqNullSafe(F.lit(de))
+        expr = F.when(cond, F.lit(para)) if expr is None else expr.when(cond, F.lit(para))
+
+    return expr
+
+
 def para_double_seguro(coluna: Column) -> Column:
     """
     Converte para double de forma tolerante: só converte textos numéricos
