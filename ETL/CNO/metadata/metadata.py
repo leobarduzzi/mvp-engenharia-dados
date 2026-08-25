@@ -149,8 +149,9 @@ SILVER_CNO_COMMENTS = {
         "Derivado de bronze.cno.data_de_inicio; inválidos/nulos descartados."
     ),
     "codigo_do_municipio": (
-        "Código do município informado no CNO. Validado contra silver.municipios "
-        "(código IBGE com DV); registros sem correspondência são descartados."
+        "Código TOM do município informado no CNO (padrão SIAFI, 4 dígitos com pad à esquerda). "
+        "Normalizado para o formato canônico e validado contra silver.municipios.codigo_tom "
+        "(enriquecimento via cidade-ibge-tom/SIAFI); registros sem correspondência são descartados."
     ),
     "unidade_de_medida": "Unidade de medida da área da obra. Vem de bronze.cno.unidade_de_medida (trim).",
     "area_total": (
@@ -254,8 +255,8 @@ FATO_OBRAS_COMMENTS = {
     "data_da_situacao": "Data da situação da obra (date). Vem de silver.cno.",
     "sk_situacao": "FK para gold.dim_situacao (situação da obra). Derivado de silver.cno.situacao.",
     "sk_municipio": (
-        "FK para gold.dim_municipio (localização da obra). Derivado de silver.cno.codigo_do_municipio "
-        "validado contra silver.municipios."
+        "FK para gold.dim_municipio (localização da obra). Join por código TOM: "
+        "silver.cno.codigo_do_municipio (pad 4 dígitos) = gold.dim_municipio.codigo_tom."
     ),
     "sk_area": (
         "FK para gold.dim_area (perfil da área declarada). Derivado das colunas de silver.cno_areas."
