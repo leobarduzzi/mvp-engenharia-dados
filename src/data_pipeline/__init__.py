@@ -6,3 +6,4 @@ from .data_utils import (
     read_ods,
     save_table,
 )
+from .tom_utils import enriquecer_codigo_tom
