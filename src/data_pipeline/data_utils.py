@@ -2,22 +2,99 @@ import re
 import unicodedata
 
 from pyspark.sql import DataFrame
+from pyspark.sql import Column
 from pyspark.sql import SparkSession
+from pyspark.sql import functions as F
 from pyspark.sql.types import StringType
 from pyspark.sql.types import StructField
 from pyspark.sql.types import StructType
+
+# Regex de validação por formato de data aceito em para_data_segura
+# (com faixas válidas de mês 01-12 e dia 01-31)
+PADRAO_DATA = {
+    "yyyy-MM-dd": r"^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$",
+}
+
+
+def nulo_se_vazio(coluna: Column) -> Column:
+    """
+    Trim e normalização de representações textuais de vazio: '', 'null'
+    (qualquer caixa) viram null de verdade — comum em arquivos gov.br.
+    """
+    texto = F.trim(coluna.cast("string"))
+
+    return F.when(
+        texto.isNull() | (texto == "") | (F.upper(texto) == "NULL"),
+        None,
+    ).otherwise(texto)
+
+
+def mapear_valores(coluna, mapa: dict[str, str]) -> Column:
+    """
+    Substitui valores da coluna conforme dicionário {de: para} (when encadeado);
+    sem correspondência resulta em null. Aceita nome da coluna (str) ou Column.
+    """
+    alvo = F.col(coluna) if isinstance(coluna, str) else coluna
+
+    expr = None
+    for de, para in mapa.items():
+        cond = alvo.eqNullSafe(F.lit(de))
+        expr = F.when(cond, F.lit(para)) if expr is None else expr.when(cond, F.lit(para))
+
+    return expr
+
+
+def para_double_seguro(coluna: Column) -> Column:
+    """
+    Converte para double de forma tolerante: só converte textos numéricos
+    (aceitando vírgula decimal); qualquer outro valor vira null.
+
+    Evita erro [CAST_INVALID_INPUT] quando o cluster roda com ANSI mode
+    habilitado (padrão no Databricks).
+    """
+    texto = F.trim(coluna.cast("string"))
+
+    return F.when(
+        texto.rlike(r"^[+-]?([0-9]+([.,][0-9]*)?|[.,][0-9]+)$"),
+        F.translate(texto, ",", ".").cast("double"),
+    )
+
+
+def para_data_segura(coluna: Column, formato: str = "yyyy-MM-dd") -> Column:
+    """
+    Converte para date de forma tolerante: só converte textos que casam
+    com o formato esperado; qualquer outro valor vira null.
+
+    Evita erro de parse quando o cluster roda com ANSI mode habilitado.
+    """
+    if formato not in PADRAO_DATA:
+        raise ValueError(f"Formato de data sem padrão de validação definido: {formato}")
+
+    texto = F.trim(coluna.cast("string"))
+
+    return F.when(
+        texto.rlike(PADRAO_DATA[formato]),
+        F.to_date(texto, formato),
+    )
 
 
 def read_csv(
     spark,
     file_path: str,
     delimiter: str = ",",
-    encoding: str = "Windows-1252"
+    encoding: str = "Windows-1252",
+    header: bool = True,
+    infer_schema: bool = True,
 ) -> DataFrame:
+    """
+    Lê um CSV com encoding configurável. Para arquivos com linhas de título
+    antes do cabeçalho (ex.: exportações SIDRA/IBGE), use header=False +
+    infer_schema=False e descarte as linhas de controle no notebook.
+    """
     return (
         spark.read
-        .option("header", True)
-        .option("inferSchema", True)
+        .option("header", header)
+        .option("inferSchema", infer_schema)
         .option("delimiter", delimiter)
         .option("encoding", encoding)
         .csv(file_path)
