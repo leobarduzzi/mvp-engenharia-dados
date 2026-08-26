@@ -82,12 +82,19 @@ def read_csv(
     spark,
     file_path: str,
     delimiter: str = ",",
-    encoding: str = "Windows-1252"
+    encoding: str = "Windows-1252",
+    header: bool = True,
+    infer_schema: bool = True,
 ) -> DataFrame:
+    """
+    Lê um CSV com encoding configurável. Para arquivos com linhas de título
+    antes do cabeçalho (ex.: exportações SIDRA/IBGE), use header=False +
+    infer_schema=False e descarte as linhas de controle no notebook.
+    """
     return (
         spark.read
-        .option("header", True)
-        .option("inferSchema", True)
+        .option("header", header)
+        .option("inferSchema", infer_schema)
         .option("delimiter", delimiter)
         .option("encoding", encoding)
         .csv(file_path)
