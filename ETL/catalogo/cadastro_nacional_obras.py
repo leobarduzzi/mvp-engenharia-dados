@@ -252,13 +252,9 @@ FATO_OBRAS_COMMENTS = {
     "sk_data_inicio": (
         "SK role-playing de gold.dim_data para data_de_inicio (int AAAAMMDD, determinística)."
     ),
-    "data_de_inicio": (
-        "Data de início da obra (date). Apenas obras iniciadas a partir de 1990-01-01. Vem de silver.cno."
-    ),
     "sk_data_situacao": (
         "SK role-playing de gold.dim_data para data_da_situacao (int AAAAMMDD, determinística)."
     ),
-    "data_da_situacao": "Data da situação da obra (date). Vem de silver.cno.",
     "sk_situacao": "FK para gold.dim_situacao (situação da obra). Derivado de silver.cno.situacao.",
     "sk_municipio": (
         "FK para gold.dim_municipio (localização da obra). Join por código TOM: "
