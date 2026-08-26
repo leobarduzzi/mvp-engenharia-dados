@@ -1,50 +1,49 @@
-# Catálogo de dados POP - Estimativas de População Residente (IBGE/SIDRA)
+# Catálogo de dados POP - População por Município (IBGE via Base dos Dados)
 #
-# Fonte: SIDRA tabela 6579 - População residente estimada
-#   https://sidra.ibge.gov.br/pesquisa/estimapop/tabelas
-#   (exportação CSV, todos os anos disponíveis: 2001 a 2025, nível município)
-# Arquivo origem: /Volumes/workspace/raw/IBGE/estimativa_populacional_6579.csv
-#   (UTF-8 com BOM; 1ª linha = título da tabela, 2ª linha = cabeçalho)
-# Licença: dados públicos IBGE — reutilização autorizada com citação da fonte
-#   (IBGE, Estimativas de População / SIDRA).
-# Linhagem: download SIDRA -> CSV no Volume ->
+# Fonte: Base dos Dados - tabela br_ibge_populacao.municipio
+#   https://basedosdados.org/dataset/d30222ad-7a5c-4778-a1ec-f0785371d1ca?table=0c279444-165b-41da-92cd-50fd7e66baa1
+# Dados: estimativas do total da população dos municípios com data de referência
+#   em 1º de julho (anos de censo/contagem usam o total recenseado), IBGE.
+# Cobertura temporal: 1991 a 2025 (anos de censo/contagem: 1991, 2000, 2010, 2022).
+# Arquivo origem: /Volumes/workspace/raw/basedosdados/br_ibge_populacao_municipio.csv
+#   (UTF-8; header: ano,sigla_uf,id_municipio,populacao)
+# Licença: Base dos Dados (CC-BY-4.0) — republicação dos dados públicos do IBGE.
+# Linhagem: download Base dos Dados -> CSV no Volume ->
 #            bronze.estimativa_populacional -> silver.populacao_estimada
 #            (validação contra silver.municipios) -> gold.fato_populacao
 #
 # As chaves dos dicionários são os nomes de colunas após `normalizar_colunas`.
 
 BRONZE_ESTIMATIVA_POPULACAO_COMMENTS = {
-    "codigo_municipio": (
-        "Código IBGE do município com DV (7 dígitos). Header original do SIDRA: 'Cód.'."
+    "ano": (
+        "Ano de referência da população (AAAA). Header original: 'ano'. "
+        "Domínio: 1991 a 2025 (estimativas IBGE, referência 1º de julho; "
+        "anos de censo/contagem: 1991, 2000, 2010, 2022)."
     ),
-    "municipio": (
-        "Nome do município seguido da sigla da UF entre parênteses "
-        "(ex.: \"Alta Floresta D'Oeste (RO)\"). Header original: 'Município'."
+    "sigla_uf": "Sigla da Unidade da Federação (2 letras). Header original: 'sigla_uf'. Domínio: 27 UFs.",
+    "id_municipio": (
+        "Código IBGE do município com DV (7 dígitos, string). Header original: 'id_municipio'. "
+        "Domínio: ^[0-9]{7}$ (1100015 a 5300108)."
     ),
-    "ano": "Ano de referência da estimativa (AAAA). Header original: 'Ano'. Domínio: 2001 a 2025.",
-    "variavel": (
-        "Nome da variável SIDRA — constante 'População residente estimada (Pessoas)' nesta extração. "
-        "Usado para conferência; não segue para a silver."
+    "populacao": (
+        "População residente no município no ano (int). Header original: 'populacao'. "
+        "Estimativas anuais IBGE; anos de censo/contagem usam o total recenseado."
     ),
-    "valor": "Valor da variável: população residente estimada (inteiro). Última coluna sem nome no header.",
 }
 
 SILVER_POPULACAO_COMMENTS = {
     "codigo_municipio": (
         "Código IBGE do município com DV (7 dígitos, string). PK parcial (com ano). "
-        "Validado contra silver.municipios.codigo_municipio; sem correspondência é descartado."
+        "Derivado de bronze.id_municipio e validado contra silver.municipios.codigo_municipio; "
+        "sem correspondência é descartado."
     ),
-    "nome_municipio": (
-        "Nome do município extraído do campo origem (sem o sufixo '(UF)'). "
-        "Referência/auditoria; nome oficial vive em silver.municipios."
-    ),
-    "sigla_uf_informada": (
-        "Sigla da UF extraída dos parênteses do campo origem. Campo de auditoria: "
+    "sigla_uf": (
+        "Sigla da UF informada no arquivo origem. Campo de auditoria: "
         "divergente da sigla oficial (silver.municipios.sigla_uf) invalida a linha."
     ),
-    "ano": "Ano de referência da estimativa (int). Domínio: 2001 a 2025. Fora do intervalo/nulo é descartado.",
+    "ano": "Ano de referência da população (int). Domínio: 1991 a 2025. Fora do intervalo/nulo é descartado.",
     "populacao": (
-        "População residente estimada (long, > 0). Derivado de bronze.valor "
+        "População residente estimada (long, > 0). Derivado de bronze.populacao "
         "com conversão tolerante; nulos/não positivos descartados."
     ),
 }
@@ -57,10 +56,10 @@ FATO_POPULACAO_COMMENTS = {
         "Natural Key degenerada: código IBGE do município com DV (7 dígitos). Vem de silver.populacao_estimada."
     ),
     "ano": (
-        "Dimensão degenerada: ano de referência da estimativa (int). "
-        "Grão da fato: 1 linha por município x ano (2001-2025)."
+        "Dimensão degenerada: ano de referência da população (int). "
+        "Grão da fato: 1 linha por município x ano (1991-2025)."
     ),
     "populacao": (
-        "Medida: população residente estimada (long). Vem de silver.populacao_estimada."
+        "Medida: população residente (long). Vem de silver.populacao_estimada."
     ),
 }
