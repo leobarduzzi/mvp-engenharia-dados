@@ -153,7 +153,12 @@ SILVER_CNO_COMMENTS = {
         "Normalizado para o formato canônico e validado contra silver.municipios.codigo_tom "
         "(enriquecimento via cidade-ibge-tom/SIAFI); registros sem correspondência são descartados."
     ),
-    "unidade_de_medida": "Unidade de medida da área da obra. Vem de bronze.cno.unidade_de_medida (trim).",
+    "unidade_de_medida": (
+        "Unidade de medida da área da obra — somente 'm²' é aceita. "
+        "Ocorrências como 'km' e ',m2' (erros de digitação) são descartadas "
+        "(análise de qualidade em qualidade/cadastro_nacional_obras.ipynb). "
+        "Vem de bronze.cno.unidade_de_medida (trim)."
+    ),
     "area_total": (
         "Área total da obra (double, >= 0). Derivado de bronze.cno.area_total "
         "com cast numérico; nulos/negativos descartados."
