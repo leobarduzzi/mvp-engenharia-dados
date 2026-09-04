@@ -9,6 +9,8 @@
 
 ### `workspace.bronze.estimativa_populacional` — estimativas anuais por município (cópia fiel do CSV)
 
+> **Comentário da tabela:** Camada bronze — cópia fiel do arquivo `br_ibge_populacao_municipio.csv` (Base dos Dados / IBGE). Grão: 1 linha por município × ano (1991 a 2025). Colunas apenas normalizadas.
+
 | Coluna | Descrição e domínio |
 |---|---|
 | `ano` | Ano de referência (AAAA). Domínio: 1991 a 2025 (estimativas IBGE, referência 1º de julho; censo/contagem: 1991, 2000, 2010, 2022). |
@@ -22,6 +24,8 @@
 
 ### `workspace.silver.populacao_estimada` — população validada
 
+> **Comentário da tabela:** Camada silver — estimativas populacionais validadas, conciliadas com `silver.municipios` (código IBGE e sigla da UF) e deduplicadas por município × ano. Grão: 1 linha por município × ano (1991 a 2025).
+
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|
 | `codigo_municipio` | Código IBGE com DV (7 dígitos, string). **PK parcial (com `ano`)** | `bronze.id_municipio`, validado contra `silver.municipios.codigo_municipio`; sem correspondência é descartado |
@@ -34,6 +38,8 @@
 ## Gold
 
 ### `workspace.gold.fato_populacao` — fato de população (grão: município × ano)
+
+> **Comentário da tabela:** Camada gold — fato de snapshot periódico da população por município (star schema). Grão: 1 linha por município × ano (1991 a 2025). Medida: `populacao`. Dimensão: `dim_municipio` (via `sk_municipio`).
 
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|

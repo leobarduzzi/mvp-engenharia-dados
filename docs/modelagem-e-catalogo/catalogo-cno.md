@@ -9,6 +9,8 @@
 
 ### `workspace.bronze.cno` — cadastro das obras (cópia fiel do `cno.csv`)
 
+> **Comentário da tabela:** Camada bronze — cópia fiel do arquivo `cno.csv` do Cadastro Nacional de Obras (RFB, dados.gov.br). Grão: 1 linha por obra. Colunas apenas normalizadas (sem transformações de negócio).
+
 | Coluna | Descrição e domínio |
 |---|---|
 | `cno` | Número do CNO |
@@ -40,6 +42,8 @@
 
 ### `workspace.bronze.cno_areas` — áreas declaradas de cada obra (cópia fiel do `cno_areas.csv`)
 
+> **Comentário da tabela:** Camada bronze — cópia fiel do arquivo `cno_areas.csv` do Cadastro Nacional de Obras (RFB, dados.gov.br). Grão: 1 linha por área declarada de uma obra (uma obra pode ter N áreas). Colunas apenas normalizadas.
+
 | Coluna | Descrição e domínio |
 |---|---|
 | `cno` | Número do CNO |
@@ -56,6 +60,8 @@
 
 ### `workspace.silver.cno` — obras limpas e validadas
 
+> **Comentário da tabela:** Camada silver — obras do Cadastro Nacional de Obras limpas, validadas e deduplicadas por `cno` (mantém a situação mais recente). Grão: 1 linha por obra. Regras: datas válidas, município TOM com registro em `silver.municipios`, unidade de medida `m²`, área total ≥ 0 e situação no domínio oficial RFB.
+
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|
 | `cno` | Número do CNO (inscrição da obra). **PK natural** | `bronze.cno.cno` (trim) |
@@ -67,6 +73,8 @@
 | `data_da_situacao` | Data da situação da obra (date, AAAA-MM-DD) | `bronze.cno.data_da_situacao`; inválidos/nulos descartados |
 
 ### `workspace.silver.cno_areas` — áreas limpas e validadas
+
+> **Comentário da tabela:** Camada silver — áreas declaradas das obras, com textos dos domínios oficiais RFB validados e metragem ≥ 0. Grão: 1 linha por área declarada (uma obra pode ter N áreas).
 
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|
@@ -84,6 +92,8 @@
 
 ### `workspace.gold.dim_situacao` — dimensão situação da obra
 
+> **Comentário da tabela:** Camada gold — dimensão da situação da obra (star schema). Grão: 1 linha por código de situação oficial RFB (01-NULA a 15-ENCERRADA). Referenciada pela `fato_obras` via `sk_situacao`.
+
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|
 | `sk_situacao` | Surrogate Key (int sequencial ordenada por código). **PK** | gerada |
@@ -91,6 +101,8 @@
 | `descricao` | Descrição decodificada via domínio oficial RFB | domínio RFB |
 
 ### `workspace.gold.dim_area` — dimensão perfil da área declarada
+
+> **Comentário da tabela:** Camada gold — dimensão de combinação do perfil das áreas declaradas (star schema). Grão: 1 linha por combinação categoria × destinação × tipo de obra × tipo de área × tipo complementar. Referenciada pela `fato_obras` via `sk_area`.
 
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|
@@ -107,6 +119,8 @@
 | `tipo_de_area_complementar_codigo` | Código RFB (0 a 3); nulo quando não aplicável | domínio RFB |
 
 ### `workspace.gold.fato_obras` — fato de obras (grão: obra × área)
+
+> **Comentário da tabela:** Camada gold — fato de obras (star schema). Grão: 1 linha por obra × área declarada (obras iniciadas a partir de 1990). Medidas: `area_total` e `metragem`. Dimensões: `dim_data` (role-playing: data de início e da situação), `dim_situacao`, `dim_municipio` (via código TOM) e `dim_area`.
 
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|

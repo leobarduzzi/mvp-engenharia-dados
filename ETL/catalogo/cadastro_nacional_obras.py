@@ -1,3 +1,53 @@
+# ---------------------------------------------------------------------------
+# Comentários das tabelas (Delta COMMENT — aplicados via add_table_comment)
+# ---------------------------------------------------------------------------
+
+CNO_TABLE_COMMENT = (
+    "Camada bronze — cópia fiel do arquivo cno.csv do Cadastro Nacional de "
+    "Obras (RFB, dados.gov.br). Grão: 1 linha por obra. Colunas apenas "
+    "normalizadas (sem transformações de negócio)."
+)
+
+CNO_AREA_TABLE_COMMENT = (
+    "Camada bronze — cópia fiel do arquivo cno_areas.csv do Cadastro Nacional "
+    "de Obras (RFB, dados.gov.br). Grão: 1 linha por área declarada de uma "
+    "obra (uma obra pode ter N áreas). Colunas apenas normalizadas."
+)
+
+SILVER_CNO_TABLE_COMMENT = (
+    "Camada silver — obras do Cadastro Nacional de Obras limpas, validadas e "
+    "deduplicadas por cno (mantém a situação mais recente). Grão: 1 linha por "
+    "obra. Regras: datas válidas, município TOM com registro em "
+    "silver.municipios, unidade de medida m², área total >= 0 e situação no "
+    "domínio oficial RFB."
+)
+
+SILVER_CNO_AREAS_TABLE_COMMENT = (
+    "Camada silver — áreas declaradas das obras, com textos dos domínios "
+    "oficiais RFB validados e metragem >= 0. Grão: 1 linha por área declarada "
+    "(uma obra pode ter N áreas)."
+)
+
+DIM_SITUACAO_TABLE_COMMENT = (
+    "Camada gold — dimensão da situação da obra (star schema). Grão: 1 linha "
+    "por código de situação oficial RFB (01-NULA a 15-ENCERRADA). "
+    "Referenciada pela fato_obras via sk_situacao."
+)
+
+DIM_AREA_TABLE_COMMENT = (
+    "Camada gold — dimensão de combinação do perfil das áreas declaradas "
+    "(star schema). Grão: 1 linha por combinação categoria x destinação x "
+    "tipo de obra x tipo de área x tipo complementar. Referenciada pela "
+    "fato_obras via sk_area."
+)
+
+FATO_OBRAS_TABLE_COMMENT = (
+    "Camada gold — fato de obras (star schema). Grão: 1 linha por obra x área "
+    "declarada (obras iniciadas a partir de 1990). Medidas: area_total e "
+    "metragem. Dimensões: dim_data (role-playing: data de início e da "
+    "situação), dim_situacao, dim_municipio (via código TOM) e dim_area."
+)
+
 CNO_COMMENTS = {
     "cno": "Número do CNO",
     "codigo_do_pais": "Código do país",

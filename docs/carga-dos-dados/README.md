@@ -13,10 +13,10 @@ A coleta foi feita de forma **manual** (download + upload para o Databricks), se
 2. **Upload manual** do arquivo para o Volume no Databricks (`/Volumes/workspace/raw/<dominio>/`);
 3. **Ingestão** para a camada bronze pelos notebooks (`read_csv`/`read_ods` → `workspace.bronze.*`, Delta).
 
-## Limitação importante: sem API de automatização
+Limitação importante: 
 
-- **Exceto pelos próprios arquivos de dados, não foi encontrada documentação de API** que permita automatizar a disponibilização/coleta desses dados.
-- O **CNO é baixado por uma URL** a partir do portal de dados abertos, mas **não há indicação se essa URL é fixa/estável**. Por isso a coleta foi registrada como **snapshot manual**: a URL deve ser conferida a cada atualização antes de reexecutar o pipeline.
+- Exceto pelos próprios arquivos de dados, não foi encontrada documentação de API que permita automatizar a disponibilização/coleta desses dados.
+- O CNO é baixado por uma URL a partir do portal de dados abertos, mas não há indicação se essa URL é fixa/estável.
 
 ## Fontes (resumo)
 

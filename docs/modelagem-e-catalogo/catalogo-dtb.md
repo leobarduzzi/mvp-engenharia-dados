@@ -9,6 +9,8 @@
 
 ### `workspace.bronze.dtb` — Divisão Territorial Brasileira (cópia fiel do `.ods`)
 
+> **Comentário da tabela:** Camada bronze — cópia fiel do relatório `RELATORIO_DTB_BRASIL_2025_MUNICIPIOS.ods` (IBGE, Divisão Territorial Brasileira 2025). Grão: 1 linha por município. Colunas apenas normalizadas.
+
 | Coluna | Descrição e domínio |
 |---|---|
 | `uf` | Código IBGE da UF (2 dígitos). Domínio: 11 a 53. *Header original: UF — contém CÓDIGO, não a sigla.* |
@@ -26,6 +28,8 @@
 ## Silver
 
 ### `workspace.silver.municipios` — municípios limpos + enriquecidos com código TOM
+
+> **Comentário da tabela:** Camada silver — municípios do IBGE limpos, validados (PK de 7 dígitos), deduplicados por código IBGE e enriquecidos com código TOM (SIAFI/Tesouro, via cidade-ibge-tom). Grão: 1 linha por município.
 
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|
@@ -45,6 +49,8 @@
 ## Gold
 
 ### `workspace.gold.dim_municipio` — dimensão município (localização)
+
+> **Comentário da tabela:** Camada gold — dimensão conformada de município (star schema). Grão: 1 linha por município (SCD tipo 1, versão corrente). Permite joins por `codigo_municipio` (IBGE) ou `codigo_tom` (bases RFB, ex.: CNO).
 
 | Coluna | Descrição e domínio | Linhagem |
 |---|---|---|

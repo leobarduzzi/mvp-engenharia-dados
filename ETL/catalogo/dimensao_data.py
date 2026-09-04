@@ -8,6 +8,12 @@
 # (ex.: fato_obras.sk_data_inicio e fato_obras.sk_data_situacao).
 # As chaves dos dicionários são os nomes de colunas após a geração.
 
+DIM_DATA_TABLE_COMMENT = (
+    "Camada gold — dimensão conformada de data (calendário). Grão: 1 linha "
+    "por dia, de 1990-01-01 a 2030-12-31. Gerada proceduralmente (sem fonte "
+    "externa); reusada pelas fatos via role-playing."
+)
+
 DIM_DATA_COMMENTS = {
     "sk_data": (
         "Surrogate Key da dimensão: inteiro no formato AAAAMMDD (ex.: 20250815). "

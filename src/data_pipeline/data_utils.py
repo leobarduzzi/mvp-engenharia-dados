@@ -222,3 +222,14 @@ def add_column_comments(spark, table_name: str, comments: dict[str, str]) -> Non
             COMMENT '{escaped_comment}'
             """
         )
+
+
+def add_table_comment(spark, table_name: str, comment: str) -> None:
+    escaped_comment = comment.replace("'", "''")
+
+    spark.sql(
+        f"""
+        ALTER TABLE {table_name}
+        SET TBLPROPERTIES ('comment' = '{escaped_comment}')
+        """
+    )

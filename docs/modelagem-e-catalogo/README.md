@@ -16,33 +16,7 @@ O modelo escolhido foi o **Esquema Estrela** (Star Schema), estrutura clássica 
 - permite reuso de dimensões conformadas (`dim_data`, `dim_municipio`) entre fatos.
 
 ## Diagrama do modelo
-
-```
-                      ┌──────────────────────────────┐
-                      │        dim_data (gold)        │  (role-playing:
-                      │ sk_data, data, ano, mes, ...  │   sk_data_inicio,
-                      └──────────────┬───────────────┘    sk_data_situacao)
-                                     │
-  dim_situacao (gold) ────┐          │
-  dim_area (gold) ────────┤          │
-  dim_municipio (gold) ───┼────┐     │
-                          │    │     │
-                       ┌──┴────┴─────┴──────────────────┐
-                       │        fato_obras (gold)        │
-                       │ cno, sk_data_*, sk_situacao,   │
-                       │ sk_municipio, sk_area,         │
-                       │ unidade_de_medida, area_total, │
-                       │ metragem                        │
-                       └────────────────────────────────┘
-
-  dim_municipio (gold) ──┐
-                         │
-                      ┌──┴──────────────────────────────┐
-                      │      fato_populacao (gold)       │
-                      │ sk_municipio, codigo_municipio,  │
-                      │ ano, populacao                   │
-                      └─────────────────────────────────┘
-```
+![DER do modelo Gold](..\evidencias\modelagem e catalogo\diagrama_er.png)
 
 ## Tabelas e grãos
 
@@ -72,7 +46,7 @@ O pipeline segue a arquitetura medalhão: **bronze** (dado como veio, com metada
 
 ## Catálogo de dados
 
-O catálogo (descrição, domínio e linhagem por campo) está transcrito por domínio, espelhando os dicionários em `ETL/catalogo/*.py`, e é aplicado nas tabelas via `add_column_comments` (`COMMENT` do Delta — visível no Unity Catalog / `DESCRIBE TABLE`).
+O catálogo (descrição, domínio e linhagem por campo) está transcrito por domínio, espelhando os dicionários em `ETL/catalogo/*.py`, e é aplicado nas tabelas via `add_column_comments` (`COMMENT` de coluna do Delta — visível no Unity Catalog / `DESCRIBE TABLE`). Cada tabela também recebe um **comentário descritivo** (camada, grão e linhagem) via `add_table_comment` (`ALTER TABLE ... SET TBLPROPERTIES ('comment' = ...)`, visível no Explorer / `DESCRIBE TABLE EXTENDED`).
 
 ## Evidências
 
