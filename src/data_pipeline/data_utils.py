@@ -229,7 +229,7 @@ def add_table_comment(spark, table_name: str, comment: str) -> None:
 
     spark.sql(
         f"""
-        ALTER TABLE {table_name}
-        SET TBLPROPERTIES ('comment' = '{escaped_comment}')
+        COMMENT ON TABLE {table_name}
+        IS '{escaped_comment}'
         """
     )
