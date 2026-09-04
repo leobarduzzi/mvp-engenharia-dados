@@ -11,6 +11,24 @@
 #
 # As chaves dos dicionários são os nomes de colunas após `normalizar_colunas`.
 
+DTB_TABLE_COMMENT = (
+    "Camada bronze — cópia fiel do relatório RELATORIO_DTB_BRASIL_2025_"
+    "MUNICIPIOS.ods (IBGE, Divisão Territorial Brasileira 2025). Grão: 1 "
+    "linha por município. Colunas apenas normalizadas."
+)
+
+SILVER_MUNICIPIOS_TABLE_COMMENT = (
+    "Camada silver — municípios do IBGE limpos, validados (PK de 7 dígitos), "
+    "deduplicados por código IBGE e enriquecidos com código TOM (SIAFI/"
+    "Tesouro, via cidade-ibge-tom). Grão: 1 linha por município."
+)
+
+DIM_MUNICIPIO_TABLE_COMMENT = (
+    "Camada gold — dimensão conformada de município (star schema). Grão: 1 "
+    "linha por município (SCD tipo 1, versão corrente). Permite joins por "
+    "codigo_municipio (IBGE) ou codigo_tom (bases RFB, ex.: CNO)."
+)
+
 DTB_COMMENTS = {
     "uf": (
         "Código IBGE da Unidade da Federação (2 dígitos). "

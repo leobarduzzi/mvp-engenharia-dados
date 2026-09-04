@@ -10,6 +10,8 @@
 
 ## `workspace.gold.dim_data`
 
+> **Comentário da tabela:** Camada gold — dimensão conformada de data (calendário). Grão: 1 linha por dia, de 1990-01-01 a 2030-12-31. Gerada proceduralmente (sem fonte externa); reusada pelas fatos via role-playing.
+
 | Coluna | Descrição e domínio |
 |---|---|
 | `sk_data` | Surrogate Key: inteiro `AAAAMMDD` (ex.: 20250815). **PK.** Determinística (estável entre execuções). |

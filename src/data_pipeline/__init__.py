@@ -1,5 +1,6 @@
 from .data_utils import (
     add_column_comments,
+    add_table_comment,
     mapear_valores,
     normalizar_texto,
     normalizar_colunas,

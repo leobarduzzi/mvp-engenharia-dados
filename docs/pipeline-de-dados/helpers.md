@@ -22,6 +22,7 @@ Benefícios: **DRY** (uma implementação única para todos os domínios), **rob
 | `nulo_se_vazio(coluna)` | `''`/`'null'` (qualquer caixa) viram `null` de verdade | Limpeza de campos textuais gov.br |
 | `mapear_valores(coluna, mapa)` | Substitui valores via dicionário `{de: para}` (when encadeado) | Decodificação de códigos em dimensões |
 | `add_column_comments(spark, table_name, comments)` | Aplica `COMMENT` em cada coluna (`ALTER TABLE ... ALTER COLUMN`) | Aplicação do catálogo logo após `save_table` |
+| `add_table_comment(spark, table_name, comment)` | Aplica o `COMMENT` da tabela (`ALTER TABLE ... SET TBLPROPERTIES`) | Comentário descritivo da tabela logo após `save_table` |
 
 ## `quality.py`
 
@@ -40,4 +41,4 @@ Benefícios: **DRY** (uma implementação única para todos os domínios), **rob
 
 ## Exemplo de uso no pipeline
 
-No `02_silver_cno`: `read_csv` (bronze) → `para_data_segura`/`para_double_seguro` (tipos tolerantes) → `resumo_invalidos` (qualidade) → `condicao_valida` (filtro) → `save_table` (Delta) → `add_column_comments` (catálogo). Nenhuma dessas etapas é reimplementada no notebook.
+No `02_silver_cno`: `read_csv` (bronze) → `para_data_segura`/`para_double_seguro` (tipos tolerantes) → `resumo_invalidos` (qualidade) → `condicao_valida` (filtro) → `save_table` (Delta) → `add_column_comments` (catálogo de colunas) → `add_table_comment` (comentário da tabela). Nenhuma dessas etapas é reimplementada no notebook.

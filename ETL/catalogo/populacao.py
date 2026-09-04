@@ -14,6 +14,24 @@
 #
 # As chaves dos dicionários são os nomes de colunas após `normalizar_colunas`.
 
+BRONZE_ESTIMATIVA_POPULACAO_TABLE_COMMENT = (
+    "Camada bronze — cópia fiel do arquivo br_ibge_populacao_municipio.csv "
+    "(Base dos Dados / IBGE). Grão: 1 linha por município x ano (1991 a "
+    "2025). Colunas apenas normalizadas."
+)
+
+SILVER_POPULACAO_TABLE_COMMENT = (
+    "Camada silver — estimativas populacionais validadas, conciliadas com "
+    "silver.municipios (código IBGE e sigla da UF) e deduplicadas por "
+    "município x ano. Grão: 1 linha por município x ano (1991 a 2025)."
+)
+
+FATO_POPULACAO_TABLE_COMMENT = (
+    "Camada gold — fato de snapshot periódico da população por município "
+    "(star schema). Grão: 1 linha por município x ano (1991 a 2025). Medida: "
+    "populacao. Dimensão: dim_municipio (via sk_municipio)."
+)
+
 BRONZE_ESTIMATIVA_POPULACAO_COMMENTS = {
     "ano": (
         "Ano de referência da população (AAAA). Header original: 'ano'. "
