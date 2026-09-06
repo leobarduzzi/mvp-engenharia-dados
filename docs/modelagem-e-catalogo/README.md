@@ -16,7 +16,7 @@ O modelo escolhido foi o **Esquema Estrela** (Star Schema), estrutura clássica 
 - permite reuso de dimensões conformadas (`dim_data`, `dim_municipio`) entre fatos.
 
 ## Diagrama do modelo
-![DER do modelo Gold](..\evidencias\modelagem e catalogo\diagrama_er.png)
+![DER do modelo Gold](..\evidencias\modelagem%20e%20catalogo\diagrama_er.png)
 
 ## Tabelas e grãos
 
@@ -46,7 +46,7 @@ O pipeline segue a arquitetura medalhão: **bronze** (dado como veio, com metada
 
 ## Catálogo de dados
 
-O catálogo (descrição, domínio e linhagem por campo) está transcrito por domínio, espelhando os dicionários em `ETL/catalogo/*.py`, e é aplicado nas tabelas via `add_column_comments` (`COMMENT` de coluna do Delta — visível no Unity Catalog / `DESCRIBE TABLE`). Cada tabela também recebe um **comentário descritivo** (camada, grão e linhagem) via `add_table_comment` (`ALTER TABLE ... SET TBLPROPERTIES ('comment' = ...)`, visível no Explorer / `DESCRIBE TABLE EXTENDED`).
+O catálogo (descrição, domínio e linhagem por campo) está transcrito por domínio, espelhando os dicionários em `ETL/catalogo/*.py`, e é aplicado nas tabelas via `add_column_comments`. Cada tabela também recebe um **comentário descritivo** (camada, grão e linhagem) via `add_table_comment`.
 
 ## Evidências
 
