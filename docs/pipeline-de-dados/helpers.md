@@ -37,6 +37,12 @@ Benefícios: **DRY** (uma implementação única para todos os domínios), **rob
 |---|---|---|
 | `enriquecer_codigo_tom(spark, df, coluna_codigo_ibge, coluna_codigo_tom)` | Adiciona o **código TOM** (4 dígitos, SIAFI/Tesouro) a partir do código IBGE via `cidade-ibge-tom` (MIT); join `left` no driver | `02_silver_municipios` — habilita o join do CNO com a dimensão de municípios |
 
+## `regioes.py`
+
+| Função | O que faz | Uso |
+|---|---|---|
+| `adicionar_regiao(df, coluna_sigla_uf)` | Adiciona a coluna `regiao` (Norte, Nordeste, Centro-Oeste, Sudeste, Sul) a partir da sigla da UF (mapa oficial IBGE); UFs sem mapeamento ficam `null` | Análise (P1 por região) — notebook `analise/cadastro_nacional_obras.ipynb` |
+
 ---
 
 ## Exemplo de uso no pipeline

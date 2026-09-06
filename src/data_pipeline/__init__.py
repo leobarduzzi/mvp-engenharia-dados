@@ -12,4 +12,5 @@ from .data_utils import (
     save_table,
 )
 from .quality import condicao_valida, resumo_invalidos
+from .regioes import adicionar_regiao
 from .tom_utils import enriquecer_codigo_tom
