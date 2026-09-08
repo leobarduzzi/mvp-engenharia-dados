@@ -36,7 +36,10 @@ Limitação importante:
 
 ## Evidências
 
-> Prints a inserir:
-> - [ ] Upload do arquivo no Volume (UI Databricks).
-> - [ ] Arquivos listados no Volume `/Volumes/workspace/raw/...`.
-> - [ ] Ingestão bronze (resultado dos notebooks `01_bronze_*`).
+| Etapa | Evidência |
+|---|---|
+| Arquivos raw no Volume | ![dados raw](../evidencias/coleta/dados_raw.png) |
+| Bronze CNO | ![cno bronze](../evidencias/coleta/cno_bronze.png) |
+| Bronze CNO áreas | ![cno_areas bronze](../evidencias/coleta/cno_areas_bronze.png) |
+| Bronze DTB | ![dtb bronze](../evidencias/coleta/dtb_bronze.png) |
+| Bronze População | ![populacao bronze](../evidencias/coleta/populacao_bronze.png) |

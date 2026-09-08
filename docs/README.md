@@ -10,9 +10,9 @@
 | Carga dos Dados (Etapa 4.2) | [carga-dos-dados/README.md](carga-dos-dados/README.md) | [origem dos dados](carga-dos-dados/fontes.md) |
 | Modelagem e Catálogo de Dados (Etapa 4.3) | [modelagem-e-catalogo/README.md](modelagem-e-catalogo/README.md) | [catálogo CNO](modelagem-e-catalogo/catalogo-cno.md) · [DTB](modelagem-e-catalogo/catalogo-dtb.md) · [população](modelagem-e-catalogo/catalogo-populacao.md) · [dim_data](modelagem-e-catalogo/catalogo-dim-data.md) |
 | Pipeline de Dados (Etapa 4.4) | [pipeline-de-dados/README.md](pipeline-de-dados/README.md) | [helpers](pipeline-de-dados/helpers.md) |
-| Qualidade de Dados (Etapa 4.5) | — pendente — | |
-| Análise de Dados (Etapa 4.5) | — pendente — | |
-| Autoavaliação | — pendente — | |
+| Qualidade de Dados (Etapa 4.5) | [qualidade-de-dados/README.md](qualidade-de-dados/README.md) | |
+| Análise de Dados (Etapa 4.5) | [analise-de-dados/README.md](analise-de-dados/README.md) | |
+| Autoavaliação | [autoavaliacao/README.md](autoavaliacao/README.md) | |
 
 ## ⚠️ Sincronização: docs ↔ código ↔ catálogo
 

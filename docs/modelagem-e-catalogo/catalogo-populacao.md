@@ -1,5 +1,7 @@
 # Catálogo de Dados — População (IBGE via Base dos Dados)
 
+> [← Voltar para o README do tópico](README.md)
+
 > Transcrito de `ETL/catalogo/populacao.py`.
 > Linhagem geral: Base dos Dados → CSV no Volume → `bronze.estimativa_populacional` → `silver.populacao_estimada` (validação contra `silver.municipios`) → `gold.fato_populacao`.
 

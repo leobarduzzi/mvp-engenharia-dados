@@ -53,6 +53,5 @@ Toda a lógica de leitura, escrita, normalização e qualidade está em **`src/d
 - Toda persistência é **Delta** via `save_table` (`saveAsTable`), seguida de `add_column_comments` (catálogo aplicado na própria tabela).
 - Referência aos scripts: [notebooks em `ETL/notebooks/`](../../ETL/notebooks/).
 
-> Prints a inserir:
-> - [ ] Explorer mostrando as tabelas persistidas em `workspace.bronze/silver/gold`.
-> - [ ] `SELECT count(*)` de cada tabela final (evidência da carga).
+> Tabelas persistidas em `workspace.bronze/silver/gold`: [evidência no tópico de Modelagem](../modelagem-e-catalogo/README.md#evidências).
+> Para os `SELECT count(*)` das tabelas finais, ver os prints no tópico [Qualidade de Dados](../qualidade-de-dados/README.md) e [Análise de Dados](../analise-de-dados/README.md).

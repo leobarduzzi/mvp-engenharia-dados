@@ -1,5 +1,7 @@
 # Catálogo de Dados — Dimensão de data (`dim_data`)
 
+> [← Voltar para o README do tópico](README.md)
+
 > Transcrito de `ETL/catalogo/dimensao_data.py`.
 > **Fonte:** nenhuma fonte externa — calendário gerado proceduralmente.
 > **Linhagem:** geração determinística em memória (sequence de datas diárias) → `gold.dim_data`.

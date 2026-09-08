@@ -1,5 +1,7 @@
 # Catálogo de Dados — DTB / Municípios (IBGE)
 
+> [← Voltar para o README do tópico](README.md)
+
 > Transcrito de `ETL/catalogo/divisao_territorial_brasileira.py`.
 > Linhagem geral: `DTB_2025.zip` (FTP IBGE) → ODS no Volume → `bronze.dtb` → `silver.municipios` (+ enriquecimento TOM) → `gold.dim_municipio`.
 

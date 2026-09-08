@@ -1,5 +1,7 @@
 # Catálogo de Dados — CNO (Cadastro Nacional de Obras)
 
+> [← Voltar para o README do tópico](README.md)
+
 > Transcrito de `ETL/catalogo/cadastro_nacional_obras.py`. Domínios oficiais (código → descrição) na seção final.
 > Linhagem geral: CSV `dados.gov.br` (RFB) → `bronze` → `silver` → `gold` (dimensions + fato).
 

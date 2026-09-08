@@ -1,5 +1,7 @@
 # Origem dos dados — detalhamento por fonte
 
+> [← Voltar para o README do tópico](README.md)
+
 > Complementa o [README](README.md) do tópico **Carga dos Dados**. Detalha a origem, o formato e a coleta de cada conjunto de dados.
 
 ---

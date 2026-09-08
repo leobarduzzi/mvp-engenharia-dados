@@ -16,7 +16,7 @@ O modelo escolhido foi o **Esquema Estrela** (Star Schema), estrutura clássica 
 - permite reuso de dimensões conformadas (`dim_data`, `dim_municipio`) entre fatos.
 
 ## Diagrama do modelo
-![DER do modelo Gold](..\evidencias\modelagem%20e%20catalogo\diagrama_er.png)
+![DER do modelo Gold](../evidencias/modelagem%20e%20catalogo/diagrama_er.png)
 
 ## Tabelas e grãos
 
@@ -42,7 +42,7 @@ O modelo escolhido foi o **Esquema Estrela** (Star Schema), estrutura clássica 
 
 ## Camadas medalhão
 
-O pipeline segue a arquitetura medalhão: **bronze** (dado como veio, com metadados) → **silver** (limpo, validado, padronizado) → **gold** (modelado para responder as perguntas). Detalhes do fluxo: tópico [Pipeline de Dados](../preparacao/README.md) e notebooks em `ETL/notebooks/`.
+O pipeline segue a arquitetura medalhão: **bronze** (dado como veio, com metadados) → **silver** (limpo, validado, padronizado) → **gold** (modelado para responder as perguntas). Detalhes do fluxo: tópico [Pipeline de Dados](../pipeline-de-dados/README.md) e notebooks em `ETL/notebooks/`.
 
 ## Catálogo de dados
 
@@ -50,6 +50,8 @@ O catálogo (descrição, domínio e linhagem por campo) está transcrito por do
 
 ## Evidências
 
-> Prints a inserir:
-> - [ ] Unity Catalog Explorer (tabelas de `workspace.bronze/silver/gold`).
-> - [ ] `DESCRIBE TABLE` mostrando os comentários de coluna (catálogo aplicado).
+- Tabelas `bronze`/`silver`/`gold` persistidas no workspace:
+
+  ![Tabelas bronze/silver/gold](../evidencias/modelagem%20e%20catalogo/tabelas_bronze_silver_gold.png)
+
+- Catálogo aplicado nas tabelas (comentários de coluna) — visível no Unity Catalog / `DESCRIBE TABLE`.
