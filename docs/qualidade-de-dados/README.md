@@ -24,7 +24,8 @@ A qualidade foi tratada em duas frentes:
 
 ### `unidade_de_medida`
 
-- Foram encontradas **apenas `m²` como unidade válida**.
+- Foram encontradas **apenas `m2` como unidade válida**.
+- **Nota:** o arquivo CSV da RFB contém o literal `m2` (sem o caractere `²`). A regra de validação na camada silver compara a string exata `m2`; ocorrências como `m²` (se houvesse) também seriam descartadas por não casarem com o valor canônico da fonte.
 - Ocorrências inconsistentes: `km` (provavelmente `km²`) e `,m2` (erro de digitação).
 - **Decisão:** descartar essas ocorrências na camada silver, **sem correção automática** (quantidade baixa e ausência de evidência suficiente para a unidade correta).
 
@@ -49,4 +50,4 @@ A qualidade foi tratada em duas frentes:
 
 ## Conclusão
 
-Os problemas detectados foram tratados na camada silver (regras por atributo, descarte de inválidos e unidades fora de `m²`). A principal **limitação de qualidade é a sub-representação de construções menores de 70 m²**, que afeta diretamente a interpretação das respostas do objetivo (ver [Análise de Dados](../analise-de-dados/README.md)).
+Os problemas detectados foram tratados na camada silver (regras por atributo, descarte de inválidos e unidades fora de `m2`). A principal **limitação de qualidade é a sub-representação de construções menores de 70 m²**, que afeta diretamente a interpretação das respostas do objetivo (ver [Análise de Dados](../analise-de-dados/README.md)).

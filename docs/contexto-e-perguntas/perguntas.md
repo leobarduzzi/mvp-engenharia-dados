@@ -31,11 +31,3 @@
 - **Resultado:** a proporção de `PARALISADA`/`NULA` **aumenta com a metragem** — hipótese de maior risco em obras menores não confirmada (na base registrada). Detalhes: [Análise de Dados](../analise-de-dados/README.md).
 - **Status:** `respondida`.
 
----
-
-## Perguntas candidatas (a avaliar conforme exploração)
-
-- **P4.** Casa popular e residencial unifamiliar têm áreas médias diferentes? (e como essa diferença evoluiu no tempo)
-- **P5.** A área média das casas varia por UF ou região geográfica intermediária/imediata?
-
-> Estas perguntas só entram para a lista oficial se os dados sustentarem a análise (volume suficiente, campos consistentes).

@@ -26,7 +26,7 @@
 
 - **Situação:** **decidido** — considerar **todas as situações** (a análise não filtra por situação; a P3 avalia a distribuição por situação).
 - **Categoria:** **decidido** — considerar `'Existente'` e `'Obra Nova'` (universo usado na análise; ver [`qualidade/cadastro_nacional_obras.ipynb`](../../qualidade/cadastro_nacional_obras.ipynb)).
-- **Unidade de medida:** **decidido** — considerar apenas `m²`. A análise de qualidade ([`qualidade/cadastro_nacional_obras.ipynb`](../../qualidade/cadastro_nacional_obras.ipynb)) confirmou que não há outras unidades válidas; ocorrências `km` e `,m2` (erros de digitação) foram descartadas na camada silver (sem correção automática).
+- **Unidade de medida:** **decidido** — considerar apenas `m2` (metro quadrado). O CSV da RFB traz o literal `m2` (sem o caractere `²`); a análise de qualidade ([`qualidade/cadastro_nacional_obras.ipynb`](../../qualidade/cadastro_nacional_obras.ipynb)) confirmou que não há outras unidades válidas na fonte, e ocorrências como `km` e `,m2` (erros de digitação) foram descartadas na camada silver (sem correção automática).
 
 ## 5. População
 
