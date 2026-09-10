@@ -51,3 +51,9 @@ A qualidade foi tratada em duas frentes:
 ## Conclusão
 
 Os problemas detectados foram tratados na camada silver (regras por atributo, descarte de inválidos e unidades fora de `m2`). A principal **limitação de qualidade é a sub-representação de construções menores de 70 m²**, que afeta diretamente a interpretação das respostas do objetivo (ver [Análise de Dados](../analise-de-dados/README.md)).
+
+## Notebook (evidência de execução)
+
+| Notebook | Código (.ipynb) | Execução (.html) |
+|---|---|---|
+| `cadastro_nacional_obras` (qualidade) | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/qualidade/cadastro_nacional_obras.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/qualidade_cadastro_nacional_obras.html) |

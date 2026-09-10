@@ -14,6 +14,11 @@
 | Análise de Dados (Etapa 4.5) | [analise-de-dados/README.md](analise-de-dados/README.md) | |
 | Autoavaliação | [autoavaliacao/README.md](autoavaliacao/README.md) | |
 
+## Evidências
+
+- **Screenshots** de execução: [`docs/evidencias/`](evidencias/) (coleta, modelagem, qualidade e análise).
+- **Notebooks executados (HTML)** via GitHub Pages: [`docs/notebooks/`](notebooks/README.md) — para cada notebook, o código (`.ipynb`) e a execução com saídas (`.html`).
+
 ## ⚠️ Sincronização: docs ↔ código ↔ catálogo
 
 Os arquivos de documentação **duplicam conteúdo que também existe no código** (comentários de coluna, regras de transformação, definições de escopo). Essa duplicação é intencional (o avaliador lê os `docs/`; o Databricks executa o código), mas **exige sincronia**.

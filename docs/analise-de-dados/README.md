@@ -53,3 +53,9 @@ A análise apresenta um panorama das casas **residenciais unifamiliares e popula
 Os resultados devem ser interpretados considerando que o **CNO tem finalidade cadastral e tributária** (obras informais podem faltar; casas ≤ 70 m² com dispensa legal). Na P2, o alinhamento da população ao ano de início da obra exclui anos sem estimativa (ex.: 1990, 2026+).
 
 **Os resultados caracterizam o universo de obras registradas no CNO e não podem ser generalizados diretamente para todas as casas construídas no Brasil.**
+
+## Notebook (evidência de execução)
+
+| Notebook | Código (.ipynb) | Execução (.html) |
+|---|---|---|
+| `cadastro_nacional_obras` (análise) | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/analise/cadastro_nacional_obras.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/analise_cadastro_nacional_obras.html) |

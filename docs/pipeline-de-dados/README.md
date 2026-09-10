@@ -55,3 +55,24 @@ Toda a lógica de leitura, escrita, normalização e qualidade está em **`src/d
 
 > Tabelas persistidas em `workspace.bronze/silver/gold`: [evidência no tópico de Modelagem](../modelagem-e-catalogo/README.md#evidências).
 > Para os `SELECT count(*)` das tabelas finais, ver os prints no tópico [Qualidade de Dados](../qualidade-de-dados/README.md) e [Análise de Dados](../analise-de-dados/README.md).
+
+### Notebooks executados
+
+Cada notebook possui o **código** (`.ipynb` no repositório) e a **execução com saídas** (`.html` via GitHub Pages). Lista completa (incluindo qualidade e análise): [docs/notebooks](../notebooks/README.md).
+
+| Notebook | Código (.ipynb) | Execução (.html) |
+|---|---|---|
+| `01_bronze_cno` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/01_bronze_cno.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/01_bronze_cno.html) |
+| `01_bronze_cno_areas` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/01_bronze_cno_areas.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/01_bronze_cno_areas.html) |
+| `02_silver_cno` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/02_silver_cno.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/02_silver_cno.html) |
+| `02_silver_cno_areas` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/02_silver_cno_areas.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/02_silver_cno_areas.html) |
+| `03_gold_dim_area` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/03_gold_dim_area.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/03_gold_dim_area.html) |
+| `03_gold_dim_situacao` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/03_gold_dim_situacao.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/03_gold_dim_situacao.html) |
+| `04_gold_fato_obras` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/cadastro_nacional_obras/04_gold_fato_obras.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/04_gold_fato_obras.html) |
+| `01_gold_dim_data` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/dimensao_data/01_gold_dim_data.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/01_gold_dim_data.html) |
+| `01_bronze_dtb` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/divisao_territorial_brasileira/01_bronze_dtb.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/01_bronze_dtb.html) |
+| `02_silver_municipios` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/divisao_territorial_brasileira/02_silver_municipios.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/02_silver_municipios.html) |
+| `03_gold_dim_municipio` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/divisao_territorial_brasileira/03_gold_dim_municipio.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/03_gold_dim_municipio.html) |
+| `01_bronze_populacao` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/populacao/01_bronze_populacao.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/01_bronze_populacao.html) |
+| `02_silver_populacao` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/populacao/02_silver_populacao.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/02_silver_populacao.html) |
+| `03_gold_fato_populacao` | [ipynb](https://github.com/leobarduzzi/mvp-engenharia-dados/blob/main/ETL/notebooks/populacao/03_gold_fato_populacao.ipynb) | [html](https://leobarduzzi.github.io/mvp-engenharia-dados/notebooks/03_gold_fato_populacao.html) |
