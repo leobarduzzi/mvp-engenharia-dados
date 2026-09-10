@@ -21,6 +21,9 @@ Pipeline de dados ponta a ponta (coleta → modelagem → carga → análise) em
 | 7 | **Autoavaliação** | [docs/autoavaliacao](docs/autoavaliacao/README.md) |
 
 ## Evidências
+### Notebooks: 
+#### Silver: 
+[01. Cadastro nacional de obras](https://leobarduzzi.github.io/mvp-engenharia-dados/html/02_silver_cno.html)
 
 Screenshots de execução e resultados: [`docs/evidencias/`](docs/evidencias/).
 
