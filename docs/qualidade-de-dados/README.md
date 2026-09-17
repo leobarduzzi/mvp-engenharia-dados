@@ -1,4 +1,4 @@
-# Qualidade de Dados (Etapa 4.5)
+# Qualidade de Dados
 
 > Documento principal do tópico **"Qualidade de Dados"**.
 > Análise executada no notebook [`qualidade/cadastro_nacional_obras.ipynb`](../../qualidade/cadastro_nacional_obras.ipynb).

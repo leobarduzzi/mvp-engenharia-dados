@@ -1,4 +1,4 @@
-# Carga dos Dados (Etapa 4.2) — Coleta
+# Carga dos Dados — Coleta
 
 > Documento principal do tópico **"Carga dos Dados"**.
 > Detalhamento da origem de cada fonte: [Origem dos dados](fontes.md)

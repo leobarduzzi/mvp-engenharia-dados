@@ -1,4 +1,4 @@
-# Contexto de Negócios e Perguntas (Etapas 2 e 4.1)
+# Contexto de Negócios e Perguntas
 
 > Documento principal do tópico **"Contexto de Negócios e Perguntas"**.
 > Detalhamentos: [Perguntas de negócio](perguntas.md) · [Definições operacionais](definicoes.md)
@@ -15,7 +15,6 @@ Ao combinar esse cadastro com a **divisão territorial** (IBGE) e as **estimativ
 2. O **porte populacional** do município (e da sua região geográfica imediata) se relaciona com a **área construída** dessas casas?
 3. Obras menores têm mais chance de ficarem **paralisadas ou nulas**?
 
-A relevância está em subsidiar discussões de políticas habitacionais, mercado imobiliário e dinâmicas urbanas — além de exercitar, ponta a ponta, um pipeline de dados (coleta → modelagem → carga → análise).
 
 ## Tema
 
@@ -40,7 +39,6 @@ A relevância está em subsidiar discussões de políticas habitacionais, mercad
 | P2 | O tamanho populacional do município se relaciona com a área construída? E o tamanho populacional da região geográfica imediata? | Respondida (com ressalvas) |
 | P3 | Qual a distribuição das situações (ativa, paralisada, encerrada etc.) por porte de obra? Obras menores têm mais chance de ficarem paralisadas/nulas? | Respondida |
 
-> A lista é **viva**: novas perguntas podem ser acrescentadas conforme o aprofundamento nos dados. Perguntas não respondidas **não são removidas** — são discutidas na Autoavaliação.
 
 ## Decisões de escopo
 

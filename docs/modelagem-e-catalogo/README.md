@@ -1,4 +1,4 @@
-# Modelagem e Catálogo de Dados (Etapa 4.3)
+# Modelagem e Catálogo de Dados
 
 > Documento principal do tópico **"Modelagem e Catálogo de Dados"**.
 > Catálogo de dados transcrito por domínio:
@@ -53,5 +53,3 @@ O catálogo (descrição, domínio e linhagem por campo) está transcrito por do
 - Tabelas `bronze`/`silver`/`gold` persistidas no workspace:
 
   ![Tabelas bronze/silver/gold](../evidencias/modelagem%20e%20catalogo/tabelas_bronze_silver_gold.png)
-
-- Catálogo aplicado nas tabelas (comentários de coluna) — visível no Unity Catalog / `DESCRIBE TABLE`.

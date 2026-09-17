@@ -1,4 +1,4 @@
-# Análise de Dados (Etapa 4.5)
+# Análise de Dados
 
 > Documento principal do tópico **"Análise de Dados"** — respostas às perguntas do objetivo com discussão.
 > Consultas e execução: [`analise/cadastro_nacional_obras.ipynb`](../../analise/cadastro_nacional_obras.ipynb).

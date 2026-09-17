@@ -1,4 +1,4 @@
-# Pipeline de Dados (Etapa 4.4)
+# Pipeline de Dados
 
 > Documento principal do tópico **"Pipeline de Dados"**.
 > Detalhamento dos helpers reutilizáveis: [Helpers (`src/data_pipeline`)](helpers.md)
