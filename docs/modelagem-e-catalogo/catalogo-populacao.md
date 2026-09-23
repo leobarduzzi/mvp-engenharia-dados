@@ -20,6 +20,10 @@
 | `id_municipio` | Código IBGE do município com DV (7 dígitos, string). Domínio: `^[0-9]{7}$` (1100015 a 5300108). |
 | `populacao` | População residente no município no ano (int). |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.bronze.estimativa_populacional`](../evidencias/modelagem%20e%20catalogo/comentarios_bronze_estimativa_populacional.png)
+
 ---
 
 ## Silver
@@ -35,6 +39,10 @@
 | `ano` | Ano de referência (int). Domínio: 1991 a 2025. Fora do intervalo/nulo é descartado | `bronze.ano` |
 | `populacao` | População estimada (long, > 0) | `bronze.populacao` (conversão tolerante); nulos/não positivos descartados |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.silver.populacao_estimada`](../evidencias/modelagem%20e%20catalogo/comentarios_silver_populacao.png)
+
 ---
 
 ## Gold
@@ -49,3 +57,7 @@
 | `codigo_municipio` | Natural Key degenerada: código IBGE com DV (7 dígitos) | `silver.populacao_estimada.codigo_municipio` |
 | `ano` | Dimensão degenerada: ano de referência (int). Grão: município × ano (1991–2025) | `silver.populacao_estimada.ano` |
 | `populacao` | **Medida:** população residente (long) | `silver.populacao_estimada.populacao` |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.gold.fato_populacao`](../evidencias/modelagem%20e%20catalogo/comentarios_gold_fato_populacao.png)

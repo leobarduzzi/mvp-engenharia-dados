@@ -25,6 +25,10 @@
 | `codigo_municipio_completo` | Código IBGE do município COM DV (7 dígitos). Domínio: 1100015 a 5300108. **PK do relatório.** |
 | `nome_municipio` | Nome oficial do município. |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.bronze.dtb`](../evidencias/modelagem%20e%20catalogo/comentarios_bronze_dtb.png)
+
 ---
 
 ## Silver
@@ -45,6 +49,10 @@
 | `nome_regiao_geografica_imediata` | Nome da Região Imediata (trim) | `bronze.dtb.nome_regiao_geografica_imediata` |
 | `nome_municipio` | Nome oficial do município (trim; casing original IBGE) | `bronze.dtb.nome_municipio` |
 | `codigo_tom` | Código TOM (4 dígitos, SIAFI/Tesouro). Pode ser nulo para códigos ausentes na base. Domínio: '0101' a '9701' (São Paulo = '7107') | **enriquecimento** via `cidade-ibge-tom` (MIT) a partir de `codigo_municipio`; base: lista oficial SIAFI (Tesouro Transparente) |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.silver.municipios`](../evidencias/modelagem%20e%20catalogo/comentarios_silver_municipios.png)
 
 ---
 
@@ -67,3 +75,7 @@
 | `nome_regiao_geografica_intermediaria` | Nome da Região Intermediária | `silver.municipios` |
 | `codigo_regiao_geografica_imediata` | Código da Região Imediata (6 dígitos) | `silver.municipios` |
 | `nome_regiao_geografica_imediata` | Nome da Região Imediata | `silver.municipios` |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.gold.dim_municipio`](../evidencias/modelagem%20e%20catalogo/comentarios_gold_dim_municipio.png)

@@ -46,10 +46,12 @@ O pipeline segue a arquitetura medalhão: **bronze** (dado como veio, com metada
 
 ## Catálogo de dados
 
-O catálogo (descrição, domínio e linhagem por campo) está transcrito por domínio, espelhando os dicionários em `ETL/catalogo/*.py`, e é aplicado nas tabelas via `add_column_comments`. Cada tabela também recebe um **comentário descritivo** (camada, grão e linhagem) via `add_table_comment`.
+O catálogo (descrição, domínio e linhagem por campo) está transcrito por domínio, espelhando os dicionários em `ETL/catalogo/*.py`, e é aplicado nas tabelas via `add_column_comments`. Cada tabela também recebe um **comentário descritivo** (camada, grão e linhagem) via `add_table_comment`. As evidências de aplicação (screenshots do Catalog Explorer) estão em cada catálogo de domínio: [CNO](catalogo-cno.md) · [DTB](catalogo-dtb.md) · [População](catalogo-populacao.md) · [dim_data](catalogo-dim-data.md).
 
 ## Evidências
 
 - Tabelas `bronze`/`silver`/`gold` persistidas no workspace:
 
   ![Tabelas bronze/silver/gold](../evidencias/modelagem%20e%20catalogo/tabelas_bronze_silver_gold.png)
+
+- Comentários aplicados (`add_table_comment` + `add_column_comments`): screenshots por tabela (descrição da tabela e comentário de cada coluna) junto a cada catálogo de domínio — [CNO](catalogo-cno.md) · [DTB](catalogo-dtb.md) · [População](catalogo-populacao.md) · [dim_data](catalogo-dim-data.md).

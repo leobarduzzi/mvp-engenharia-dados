@@ -16,7 +16,7 @@
 
 ## Evidências
 
-- **Screenshots** de execução: [`docs/evidencias/`](evidencias/) (coleta, modelagem, qualidade e análise).
+- **Screenshots** de execução: [`docs/evidencias/`](evidencias/) (coleta, modelagem e catálogo — inclui os comentários de tabela/coluna aplicados —, qualidade e análise).
 - **Notebooks executados (HTML)** via GitHub Pages: [`docs/notebooks/`](notebooks/README.md) — para cada notebook, o código (`.ipynb`) e a execução com saídas (`.html`).
 
 ## ⚠️ Sincronização: docs ↔ código ↔ catálogo

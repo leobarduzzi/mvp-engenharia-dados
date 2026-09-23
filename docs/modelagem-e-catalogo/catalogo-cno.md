@@ -42,6 +42,10 @@
 | `nome_empresarial` | Nome empresarial do responsável (pessoa física: campo em branco) |
 | `codigo_de_localizacao` | Código da localização |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.bronze.cno`](../evidencias/modelagem%20e%20catalogo/comentarios_bronze_cno.png)
+
 ### `workspace.bronze.cno_areas` — áreas declaradas de cada obra (cópia fiel do `cno_areas.csv`)
 
 > **Comentário da tabela:** Camada bronze — cópia fiel do arquivo `cno_areas.csv` do Cadastro Nacional de Obras (RFB, dados.gov.br). Grão: 1 linha por área declarada de uma obra (uma obra pode ter N áreas). Colunas apenas normalizadas.
@@ -55,6 +59,10 @@
 | `tipo_de_area` | P-Principal; C-Complementar |
 | `tipo_de_area_complementar` | 0-Quadra Esportiva e Poliesportiva; 1-Estacionamento Térreo; 2-Piscina; 3-Área Complementar do Posto de Gasolina |
 | `metragem` | Metragem da área |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.bronze.cno_areas`](../evidencias/modelagem%20e%20catalogo/comentarios_bronze_cno_areas.png)
 
 ---
 
@@ -74,6 +82,10 @@
 | `situacao` | Código da situação: 01-NULA; 02-ATIVA; 03-SUSPENSA; 14-PARALISADA; 15-ENCERRADA | `bronze.cno.situacao`; fora do domínio descartado |
 | `data_da_situacao` | Data da situação da obra (date, AAAA-MM-DD) | `bronze.cno.data_da_situacao`; inválidos/nulos descartados |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.silver.cno`](../evidencias/modelagem%20e%20catalogo/comentarios_silver_cno.png)
+
 ### `workspace.silver.cno_areas` — áreas limpas e validadas
 
 > **Comentário da tabela:** Camada silver — áreas declaradas das obras, com textos dos domínios oficiais RFB validados e metragem ≥ 0. Grão: 1 linha por área declarada (uma obra pode ter N áreas).
@@ -88,6 +100,10 @@
 | `tipo_de_area_complementar` | 'Quadra Esportiva e Poliesportiva'; 'Estacionamento Térreo'; 'Piscina'; 'Área Complementar do Posto de Gasolina'; pode ser nulo quando `tipo_de_area` = Principal | `bronze.cno_areas.tipo_de_area_complementar` (literal 'null' do CSV → null) |
 | `metragem` | Metragem da área (double, ≥ 0) | `bronze.cno_areas.metragem` (conversão tolerante); nulos/negativos descartados |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.silver.cno_areas`](../evidencias/modelagem%20e%20catalogo/comentarios_silver_cno_areas.png)
+
 ---
 
 ## Gold
@@ -101,6 +117,10 @@
 | `sk_situacao` | Surrogate Key (int sequencial ordenada por código). **PK** | gerada |
 | `codigo_situacao` | Código da situação (**NK**): 01-NULA; 02-ATIVA; 03-SUSPENSA; 14-PARALISADA; 15-ENCERRADA | `silver.cno.situacao` |
 | `descricao` | Descrição decodificada via domínio oficial RFB | domínio RFB |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.gold.dim_situacao`](../evidencias/modelagem%20e%20catalogo/comentarios_gold_dim_situacao.png)
 
 ### `workspace.gold.dim_area` — dimensão perfil da área declarada
 
@@ -120,6 +140,10 @@
 | `tipo_de_area_complementar` | Texto oficial do tipo complementar; nulo quando não aplicável | `silver.cno_areas.tipo_de_area_complementar` |
 | `tipo_de_area_complementar_codigo` | Código RFB (0 a 3); nulo quando não aplicável | domínio RFB |
 
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.gold.dim_area`](../evidencias/modelagem%20e%20catalogo/comentarios_gold_dim_area.png)
+
 ### `workspace.gold.fato_obras` — fato de obras (grão: obra × área)
 
 > **Comentário da tabela:** Camada gold — fato de obras (star schema). Grão: 1 linha por obra × área declarada (obras iniciadas a partir de 1990). Medidas: `area_total` e `metragem`. Dimensões: `dim_data` (role-playing: data de início e da situação), `dim_situacao`, `dim_municipio` (via código TOM) e `dim_area`.
@@ -135,6 +159,10 @@
 | `unidade_de_medida` | Unidade de medida (dimensão degenerada) | `silver.cno.unidade_de_medida` |
 | `area_total` | **Medida:** área total da obra (double), repetida por linha de área | `silver.cno.area_total` |
 | `metragem` | **Medida:** metragem da área declarada (double), no grão obra × área | `silver.cno_areas.metragem` |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.gold.fato_obras`](../evidencias/modelagem%20e%20catalogo/comentarios_gold_fato_obras.png)
 
 ---
 

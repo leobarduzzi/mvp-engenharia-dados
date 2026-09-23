@@ -30,3 +30,7 @@
 | `semana_do_ano` | Semana do ano ISO (int). Domínio: 1 a 53. |
 | `ano_mes` | Ano-mês `'AAAA-MM'` (string) para agregações mensais. |
 | `flag_fim_de_semana` | Booleano: true em sábado/domingo (útil para sazonalidade). |
+
+_Evidência — comentários de coluna aplicados via `add_column_comments` no Databricks:_
+
+![Comentários aplicados — `workspace.gold.dim_data`](../evidencias/modelagem%20e%20catalogo/comentarios_gold_dim_data.png)
